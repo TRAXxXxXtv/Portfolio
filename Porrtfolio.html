@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Tristan Ravoisier - Développeur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2f6; /* Fond très clair et doux */
+            color: #2d3748; /* Texte principal plus foncé pour le contraste */
+            line-height: 1.7; /* Hauteur de ligne légèrement augmentée pour la lisibilité */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+        }
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #f7fafc;
+        }
+        body.dark-mode header {
+            background-color: #2d3748;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode .nav-link {
+            color: #e2e8f0;
+        }
+        body.dark-mode .nav-link:hover {
+            color: #667eea;
+        }
+        body.dark-mode .nav-link::after {
+            background-color: #667eea;
+        }
+        body.dark-mode #mobile-menu {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode #mobile-menu a {
+            color: #e2e8f0;
+        }
+        body.dark-mode #mobile-menu a:hover {
+            background-color: #4a5568;
+            color: #667eea;
+        }
+        body.dark-mode section {
+            background-color: #2d3748;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode section:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        body.dark-mode .project-card,
+        body.dark-mode .bg-gray-50 {
+            background-color: #2d3748;
+            border-color: #4a5568;
+        }
+        body.dark-mode .project-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        body.dark-mode .project-card h3 {
+            color: #f7fafc;
+        }
+        body.dark-mode .project-card p {
+            color: #cbd5e0;
+        }
+        body.dark-mode .project-card a {
+            color: #9f7aea; /* Purple for links in dark mode */
+        }
+        body.dark-mode .project-card a:hover {
+            color: #b794f4;
+        }
+        body.dark-mode #contact .bg-gray-50 {
+            background-color: #2d3748;
+            border-color: #4a5568;
+        }
+        body.dark-mode #contact label {
+            color: #f7fafc;
+        }
+        body.dark-mode #contact input,
+        body.dark-mode #contact textarea {
+            background-color: #4a5568;
+            border-color: #667eea;
+            color: #e2e8f0;
+        }
+        body.dark-mode #contact input::placeholder,
+        body.dark-mode #contact textarea::placeholder {
+            color: #a0aec0;
+        }
+        body.dark-mode footer {
+            background-color: #1a202c;
+            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode #scrollToTopBtn {
+            background-color: #667eea;
+        }
+        body.dark-mode #scrollToTopBtn:hover {
+            background-color: #5a67d8;
+        }
+        body.dark-mode .testimonial-card {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        body.dark-mode .testimonial-card p {
+            color: #e2e8f0;
+        }
+        body.dark-mode .testimonial-card .font-semibold {
+            color: #f7fafc;
+        }
+        body.dark-mode .testimonial-card .text-gray-500 {
+            color: #a0aec0;
+        }
+
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a202c; /* Titres très foncés */
+        }
+        /* Style pour les sections */
+        section {
+            padding: 6rem 0; /* Plus d'espace vertical */
+            margin-bottom: 3rem; /* Marge augmentée */
+            border-radius: 2rem; /* Coins encore plus arrondis */
+            background-color: #ffffff; /* Fond blanc pur pour les sections */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); /* Ombre plus diffuse et élégante */
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Transitions douces */
+        }
+        section:hover {
+            transform: translateY(-8px); /* Soulèvement plus prononcé au survol */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); /* Ombre plus intense au survol */
+        }
+        /* Style pour les liens de navigation */
+        .nav-link {
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4c51bf; /* Ligne de survol */
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #4c51bf; /* Couleur indigo plus profonde au survol */
+            transform: translateY(-3px); /* Léger soulèvement */
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 1.2s ease-out forwards;
+        }
+
+        /* Elements that animate on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px); /* Default state for fadeInUp */
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific animations for different elements */
+        .animate-on-scroll.slide-left {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.slide-left.is-visible {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-on-scroll.slide-right {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.slide-right.is-visible {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        /* Typing effect cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em; /* Adjust to match text height */
+            background-color: white;
+            animation: blink-caret 0.75s step-end infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blink-caret {
+            from, to { background-color: transparent }
+            50% { background-color: white }
+        }
+
+
+        /* Scroll to top button */
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px; /* Plus bas */
+            right: 30px; /* Plus à droite */
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #4c51bf; /* Couleur indigo plus profonde */
+            color: white;
+            cursor: pointer;
+            padding: 18px 22px; /* Plus grand */
+            border-radius: 50%;
+            font-size: 22px; /* Plus grande icône */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #3f44a8; /* Couleur plus foncée au survol */
+            transform: scale(1.15); /* Soulèvement plus important */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Project Card specific styling */
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Contact Form Submission Message */
+        .submission-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #48bb78; /* Green for success */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .submission-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <header class="bg-white shadow-xl py-5 px-8 md:px-16 fixed w-full z-[999] rounded-b-3xl">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-wide">Tristan Ravoisier</a>
+            <div class="hidden md:flex space-x-12">
+                <a href="#accueil" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">Accueil</a>
+                <a href="#a-propos" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">À propos</a>
+                <a href="#competences" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">Compétences</a>
+                <a href="#experience" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">Expérience</a>
+                <a href="#projets" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">Projets</a>
+                <a href="#temoignages" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">Témoignages</a>
+                <a href="#contact" class="nav-link text-base md:text-xl text-gray-700 hover:text-indigo-700 font-medium">Contact</a>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+                <svg id="sun-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 21v-2.25m-6.364-.386l1.591-1.591M3 12H5.25m-.386-6.364l1.591 1.591M12 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0112 21.75a9.718 9.718 0 01-9.752-6.748A9.716 9.716 0 0112 3.75a9.716 9.716 0 019.752 11.252z" />
+                </svg>
+            </button>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none p-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="md:hidden bg-white mt-5 rounded-xl shadow-2xl border border-gray-100 max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-in-out">
+            <a href="#accueil" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">Accueil</a>
+            <a href="#a-propos" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">À propos</a>
+            <a href="#competences" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">Compétences</a>
+            <a href="#experience" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">Expérience</a>
+            <a href="#projets" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">Projets</a>
+            <a href="#temoignages" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">Témoignages</a>
+            <a href="#contact" class="block py-4 px-6 text-lg text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition duration-200">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-28"> <section id="accueil" class="bg-gradient-to-br from-indigo-700 to-purple-800 text-white text-center py-20 sm:py-24 md:py-28 rounded-b-3xl shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm12 10V6h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 10V6H10v4H6v2h4v4h2v-4h4v-2h-4zM36 46v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm12 10v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 46v-4H10v4H6v2h4v4h2v-4h4v-2h-4zM36 22v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 34v-4H10v4H6v2h4v4h2v-4h4v-2h-4zM24 22v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM48 22v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM24 10V6h-2v4h-4v2h4v4h2v-4h4V4h-4zM24 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM48 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM24 46v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 22v-4H-4v4H-8v2h4v4h2v-4h4v-2h-4zm0 24v-4H-4v4H-8v2h4v4h2v-4h4v-2h-4z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+            <div class="container mx-auto px-4 sm:px-8 relative z-10">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 sm:mb-6 animate-fade-in-down">Salut, je suis Tristan Ravoisier !</h1>
+                <p id="typing-text" class="text-xl sm:text-2xl md:text-3xl mb-8 sm:mb-12"></p>
+                <a href="#projets" class="bg-white text-indigo-800 hover:bg-gray-100 font-bold py-3 px-8 sm:py-4 sm:px-12 rounded-full shadow-2xl transition duration-400 ease-in-out transform hover:scale-110 hover:shadow-3xl text-lg sm:text-xl tracking-wide">
+                    Voir mes projets
+                </a>
+            </div>
+        </section>
+
+        <section id="a-propos" class="container mx-auto px-6 sm:px-10 py-16 sm:py-20 mt-12 sm:mt-16 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 sm:mb-16 text-gray-900">À propos de moi</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-20">
+                <div class="md:w-1/2 mb-8 md:mb-0 animate-on-scroll slide-left">
+                    <img src="https://placehold.co/600x400/A78BFA/FFFFFF?text=Votre+Photo" alt="Photo de Tristan Ravoisier" class="rounded-3xl shadow-2xl w-full h-auto object-cover border-4 sm:border-6 border-indigo-300 transform rotate-1 transition duration-500 hover:rotate-0 hover:scale-105">
+                </div>
+                <div class="md:w-1/2 text-lg sm:text-xl text-gray-700 leading-relaxed sm:leading-loose animate-on-scroll slide-right">
+                    <p class="mb-6 sm:mb-8">Je suis Tristan Ravoisier, un développeur avec une passion pour la création d'applications web et mobiles robustes et conviviales. J'ai une solide expérience dans le développement front-end et back-end, et je suis toujours à la recherche de nouvelles technologies et de défis passionnants.</p>
+                    <p class="mb-6 sm:mb-8">Mon objectif est de transformer des idées complexes en solutions logicielles élégantes et efficaces. J'aime travailler sur des projets qui ont un impact réel et qui me permettent d'apprendre et de grandir continuellement.</p>
+                    <p>En dehors du codage, j'aime explorer de nouvelles cultures, jouer à des jeux vidéo et contribuer à des projets open source.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="competences" class="bg-gray-50 container mx-auto px-6 sm:px-10 py-16 sm:py-20 mt-12 sm:mt-16 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 sm:mb-16 text-gray-900">Mes Compétences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.1s;">
+                    <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">Développement Front-end</h3>
+                    <ul class="space-y-3 sm:space-y-4 text-base sm:text-lg text-gray-700">
+                        <li class="flex items-center"><span class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></span>HTML5 & CSS3 (Tailwind CSS)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></span>JavaScript (ES6+)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></span>React.js & Next.js</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></span>Vue.js</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></span>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Développement Back-end</h3>
+                    <ul class="space-y-3 sm:space-y-4 text-base sm:text-lg text-gray-700">
+                        <li class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>Node.js & Express.js</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>Python (Django, Flask)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>Bases de données (MongoDB, PostgreSQL)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>APIs RESTful</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>Authentification (JWT)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg animate-on-scroll" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Outils & Autres</h3>
+                    <ul class="space-y-3 sm:space-y-4 text-base sm:text-lg text-gray-700">
+                        <li class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-3"></span>Git & GitHub</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-3"></span>Docker</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-3"></span>Méthodologies Agile (Scrum)</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-3"></span>Tests unitaires & d'intégration</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-teal-500 rounded-full mr-3"></span>Déploiement (Netlify, Vercel)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="container mx-auto px-6 sm:px-10 py-16 sm:py-20 mt-12 sm:mt-16 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 sm:mb-16 text-gray-900">Expérience & Éducation</h2>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-indigo-300 h-full rounded-full hidden md:block"></div>
+
+                <div class="mb-10 sm:mb-12 flex flex-col md:flex-row items-center justify-between w-full md:space-x-12 animate-on-scroll">
+                    <div class="md:w-1/2 text-left md:text-right md:pr-12 mb-4 md:mb-0 order-2 md:order-1">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2">Développeur Full-stack</h3>
+                        <p class="text-indigo-600 text-base sm:text-lg font-medium mb-2">Tech Solutions Inc. | 2022 - Présent</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm sm:text-base space-y-1">
+                            <li>Développement et maintenance d'applications web complexes.</li>
+                            <li>Collaboration avec les équipes de design et de produit.</li>
+                            <li>Optimisation des performances et de l'expérience utilisateur.</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 order-1 md:order-2 flex justify-center md:justify-start">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-lg">🚀</div>
+                    </div>
+                </div>
+
+                <div class="mb-10 sm:mb-12 flex flex-col md:flex-row-reverse items-center justify-between w-full md:space-x-12 animate-on-scroll">
+                    <div class="md:w-1/2 text-left md:pl-12 mb-4 md:mb-0 order-2 md:order-1">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2">Diplôme d'Ingénieur en Informatique</h3>
+                        <p class="text-purple-600 text-base sm:text-lg font-medium mb-2">Université de la Technologie | 2019 - 2022</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm sm:text-base space-y-1">
+                            <li>Spécialisation en développement logiciel et systèmes d'information.</li>
+                            <li>Projet de fin d'études : Application de gestion de projet.</li>
+                            <li>Mention très bien.</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 md:pr-12 order-1 md:order-2 flex justify-center md:justify-end">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-lg">🎓</div>
+                    </div>
+                </div>
+
+                <div class="mb-10 sm:mb-12 flex flex-col md:flex-row items-center justify-between w-full md:space-x-12 animate-on-scroll">
+                    <div class="md:w-1/2 text-left md:text-right md:pr-12 mb-4 md:mb-0 order-2 md:order-1">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2">Stagiaire Développeur Web</h3>
+                        <p class="text-indigo-600 text-base sm:text-lg font-medium mb-2">Startup Innovante | 2021 (6 mois)</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm sm:text-base space-y-1">
+                            <li>Contribution au développement front-end d'une nouvelle plateforme.</li>
+                            <li>Apprentissage des bonnes pratiques de code et de collaboration.</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 order-1 md:order-2 flex justify-center md:justify-start">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-lg">💻</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets" class="bg-gray-50 container mx-auto px-6 sm:px-10 py-16 sm:py-20 mt-12 sm:mt-16 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 sm:mb-16 text-gray-900">Mes Projets</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+                <div class="project-card bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 animate-on-scroll" style="animation-delay: 0.1s;">
+                    <img src="https://placehold.co/400x250/6366F1/FFFFFF?text=Projet+1" alt="Projet 1" class="w-full h-48 sm:h-56 object-cover">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">Projet de Portfolio Personnel</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-5 sm:mb-6">Un site web réactif pour présenter mes compétences et mes projets. Construit avec HTML, CSS (Tailwind CSS) et JavaScript.</p>
+                        <a href="https://github.com/TRAXxXxXtv/portfolio-project" target="_blank" class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-semibold transition duration-300 text-base sm:text-lg">
+                            Voir sur GitHub
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 10.5L21 6.75m0 0L17.25 3m3.75 3.75H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <img src="https://placehold.co/400x250/8B5CF6/FFFFFF?text=Projet+2" alt="Projet 2" class="w-full h-48 sm:h-56 object-cover">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">Application de Gestion de Tâches</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-5 sm:mb-6">Une application web interactive pour organiser et suivre les tâches quotidiennes. Développée avec React et une API REST.</p>
+                        <a href="https://github.com/TRAXxXxXtv/task-manager-app" target="_blank" class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-semibold transition duration-300 text-base sm:text-lg">
+                            Voir sur GitHub
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 10.5L21 6.75m0 0L17.25 3m3.75 3.75H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 animate-on-scroll" style="animation-delay: 0.3s;">
+                    <img src="https://placehold.co/400x250/EC4899/FFFFFF?text=Projet+3" alt="Projet 3" class="w-full h-48 sm:h-56 object-cover">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">Site E-commerce simple</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-5 sm:mb-6">Un prototype de site e-commerce avec panier d'achat et gestion de produits. Utilise Node.js et Express pour le backend.</p>
+                        <a href="https://github.com/TRAXxXxXtv/ecommerce-site" target="_blank" class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-semibold transition duration-300 text-base sm:text-lg">
+                            Voir sur GitHub
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 10.5L21 6.75m0 0L17.25 3m3.75 3.75H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-16 sm:mt-20 animate-on-scroll">
+                <a href="https://github.com/TRAXxXxXtv" target="_blank" class="bg-indigo-700 text-white hover:bg-indigo-800 font-bold py-3 px-10 sm:py-4 sm:px-14 rounded-full shadow-2xl transition duration-400 ease-in-out transform hover:scale-110 hover:shadow-3xl text-lg sm:text-xl tracking-wide">
+                    Voir tous mes projets sur GitHub
+                </a>
+            </div>
+        </section>
+
+        <section id="temoignages" class="container mx-auto px-6 sm:px-10 py-16 sm:py-20 mt-12 sm:mt-16 bg-gray-50 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 sm:mb-16 text-gray-900">Ce qu'ils disent de moi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 animate-on-scroll" style="animation-delay: 0.1s;">
+                    <p class="text-gray-700 text-lg sm:text-xl italic mb-6">"Tristan est un développeur exceptionnel. Sa capacité à résoudre des problèmes complexes et à livrer des solutions de haute qualité est impressionnante. Une véritable valeur ajoutée pour toute équipe."</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/667eea/FFFFFF?text=JD" alt="Client 1" class="w-16 h-16 rounded-full mr-4 border-2 border-indigo-400">
+                        <div>
+                            <p class="font-semibold text-gray-800 text-lg">Jean Dupont</p>
+                            <p class="text-gray-500 text-sm">Directeur Technique, Entreprise X</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <p class="text-gray-700 text-lg sm:text-xl italic mb-6">"Travailler avec Tristan a été un plaisir. Il est très réactif, à l'écoute de nos besoins et a su transformer notre vision en un produit fonctionnel et esthétique. Je le recommande vivement !"</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/9f7aea/FFFFFF?text=AS" alt="Client 2" class="w-16 h-16 rounded-full mr-4 border-2 border-purple-400">
+                        <div>
+                            <p class="font-semibold text-gray-800 text-lg">Alice Smith</p>
+                            <p class="text-gray-500 text-sm">Chef de Projet, Agence Y</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container mx-auto px-6 sm:px-10 py-16 sm:py-20 mt-12 sm:mt-16 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-10 sm:mb-16 text-gray-900">Contactez-moi</h2>
+            <div class="max-w-xl sm:max-w-3xl mx-auto bg-gray-50 p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100 animate-on-scroll">
+                <form id="contact-form" action="#" method="POST">
+                    <div class="mb-6 sm:mb-8">
+                        <label for="name" class="block text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Nom :</label>
+                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border border-gray-200 rounded-lg w-full py-3 px-5 text-gray-700 leading-tight focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-200 text-base sm:text-lg" placeholder="Votre nom" required>
+                    </div>
+                    <div class="mb-6 sm:mb-8">
+                        <label for="email" class="block text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Email :</label>
+                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border border-gray-200 rounded-lg w-full py-3 px-5 text-gray-700 leading-tight focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-200 text-base sm:text-lg" placeholder="Votre email" required>
+                    </div>
+                    <div class="mb-8 sm:mb-10">
+                        <label for="message" class="block text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Message :</label>
+                        <textarea id="message" name="message" rows="6" sm:rows="8" class="shadow-sm appearance-none border border-gray-200 rounded-lg w-full py-3 px-5 text-gray-700 leading-tight focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-200 text-base sm:text-lg" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button type="submit" class="bg-indigo-700 text-white hover:bg-indigo-800 font-bold py-3 px-10 sm:py-4 sm:px-14 rounded-full shadow-2xl transition duration-400 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 text-lg sm:text-xl tracking-wide">
+                            Envoyer le message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 sm:py-12 text-center rounded-t-3xl shadow-inner">
+        <div class="container mx-auto px-6 sm:px-8">
+            <p class="text-base sm:text-lg mb-4 sm:mb-5">&copy; 2025 Tristan Ravoisier. Tous droits réservés.</p>
+            <div class="flex justify-center space-x-6 sm:space-x-8 mt-4">
+                <a href="https://github.com/TRAXxXxXtv" target="_blank" class="text-gray-400 hover:text-white transition duration-300 transform hover:scale-125">
+                    <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.702-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.835.09-.647.35-1.089.636-1.338-2.22-.253-4.555-1.113-4.555-4.931 0-1.091.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.022A9.645 9.645 0 0112 6.865c.85.004 1.705.115 2.504.337 1.909-1.292 2.747-1.022 2.747-1.022.546 1.379.202 2.398.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.829-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.33-.012 2.41-.012 2.727 0 .268.18.579.688.481C21.137 20.2 24 16.437 24 12.017 24 6.484 19.522 2 14 2h-2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                </div>
+        </div>
+    </footer>
+
+    <button id="scrollToTopBtn" title="Retour en haut">↑</button>
+
+    <div id="submission-message" class="submission-message hidden">
+        Votre message a été envoyé avec succès !
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu after clicking a link
+                const mobileMenu = document.getElementById('mobile-menu');
+                // Check if the menu is currently visible (max-h-screen is present)
+                if (mobileMenu.classList.contains('max-h-screen')) {
+                    mobileMenu.classList.remove('max-h-screen', 'opacity-100');
+                    mobileMenu.classList.add('max-h-0', 'opacity-0');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            // Toggle max-height and opacity for smooth slide/fade effect
+            if (mobileMenu.classList.contains('max-h-0')) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-screen', 'opacity-100');
+            } else {
+                mobileMenu.classList.remove('max-h-screen', 'opacity-100');
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+            }
+        });
+
+        // Scroll to top button logic
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Stop observing the element once it's visible to prevent re-triggering the animation
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: Remove 'is-visible' class if the element is no longer visible, to re-trigger the animation on next scroll
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Initial animation for the main title
+            document.querySelector('.animate-fade-in-down').classList.add('is-visible');
+
+            // Typing effect for the tagline
+            const typingTextElement = document.getElementById('typing-text');
+            const phrases = [
+                "Développeur passionné, créant des solutions innovantes.",
+                "Expert en développement web et mobile.",
+                "Transformant des idées en code élégant.",
+                "Toujours en quête de nouveaux défis."
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100; // Milliseconds per character
+            let deletingSpeed = 50; // Milliseconds per character for deletion
+            let pauseBeforeDelete = 1500; // Milliseconds to wait before deleting
+            let pauseBeforeType = 500; // Milliseconds to wait before typing next phrase
+
+            function typeWriter() {
+                const currentPhrase = phrases[phraseIndex];
+                let currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (isDeleting) {
+                    // If deleting and characters remain
+                    if (charIndex > 0) {
+                        typingTextElement.textContent = currentPhrase.substring(0, --charIndex);
+                    } else {
+                        // End of deletion, move to next phrase
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        currentSpeed = pauseBeforeType;
+                    }
+                } else {
+                    // If typing and characters remain to type
+                    if (charIndex < currentPhrase.length) {
+                        typingTextElement.textContent = currentPhrase.substring(0, ++charIndex);
+                    } else {
+                        // End of typing, wait before deleting
+                        currentSpeed = pauseBeforeDelete;
+                        isDeleting = true;
+                    }
+                }
+                // Call the function again after the calculated delay
+                setTimeout(typeWriter, currentSpeed);
+            }
+
+            // Add a blinking cursor
+            const cursorSpan = document.createElement('span');
+            cursorSpan.classList.add('typing-cursor');
+            typingTextElement.appendChild(cursorSpan);
+
+            // Start the typing effect after a short delay
+            setTimeout(typeWriter, 1000);
+
+            // Dark/Light Mode Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            // Check for saved theme in localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                }
+            });
+
+            // Contact Form Submission
+            const contactForm = document.getElementById('contact-form');
+            const submissionMessage = document.getElementById('submission-message');
+
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                // Simulate form submission (e.g., send data to a server)
+                console.log('Form submitted!');
+                console.log('Name:', document.getElementById('name').value);
+                console.log('Email:', document.getElementById('email').value);
+                console.log('Message:', document.getElementById('message').value);
+
+                // Show success message
+                submissionMessage.classList.remove('hidden');
+                submissionMessage.classList.add('show');
+
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    submissionMessage.classList.remove('show');
+                    submissionMessage.classList.add('hidden');
+                }, 3000);
+
+                // Optionally, clear the form
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
